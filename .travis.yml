@@ -15,6 +15,25 @@ addons:
     - sparse
     - wget
     - libibumad-dev
+    # Dependencies for building rdma-core
+    - build-essential
+    - cmake
+    - debhelper
+    - dh-systemd
+    - ninja-build
+    - libnl-3-dev
+    - libnl-route-3-dev
+    - libudev-dev
+before_script:
+  - export RDMA_CORE_VERSION="23"
+  - wget https://github.com/linux-rdma/rdma-core/releases/download/v${RDMA_CORE_VERSION}/rdma-core-${RDMA_CORE_VERSION}.tar.gz
+  - tar xf rdma-core-${RDMA_CORE_VERSION}.tar.gz
+  - cd rdma-core-${RDMA_CORE_VERSION}
+  - debian/rules build
+  - sudo debian/rules binary
+  - ls -alF
+  - cd ..
+  - sudo dpkg -i libibumad*.deb
 script:
   - scripts/travis-checkpatch
   - scripts/travis-build
