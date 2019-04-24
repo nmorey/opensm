@@ -6601,14 +6601,12 @@ typedef struct _ib_link_record {
 	uint8_t pad[2];
 } ib_link_record_t;
 
-#include <complib/cl_packon.h>
 typedef struct _ib_sminfo_record {
 	ib_net16_t lid;
 	uint16_t resv0;
 	ib_sm_info_t sm_info;
 	uint8_t pad[7];
-} PACK_SUFFIX ib_sminfo_record_t;
-#include <complib/cl_packoff.h>
+} ib_sminfo_record_t;
 
 /****s* IBA Base: Types/ib_lft_record_t
 * NAME
@@ -8524,15 +8522,13 @@ ib_inform_info_get_vend_id(IN const ib_inform_info_t * p_inf)
 *
 * SYNOPSIS
 */
-#include <complib/cl_packon.h>
 typedef struct _ib_inform_info_record {
 	ib_gid_t subscriber_gid;
 	ib_net16_t subscriber_enum;
 	uint8_t reserved[6];
 	ib_inform_info_t inform_info;
 	uint8_t pad[4];
-} PACK_SUFFIX ib_inform_info_record_t;
-#include <complib/cl_packoff.h>
+} ib_inform_info_record_t;
 
 /****s* IBA Base: Types/ib_perfmgt_mad_t
 * NAME
